@@ -1,0 +1,86 @@
+/* 覆盖element样式 main引用*/
+
+.el-table th {
+    background-color: #343a4a;
+}
+
+.el-tabs__nav-wrap {
+    background-color: #1d2334;
+    height: 53px;
+}
+
+.el-tabs__header {
+    margin: 0
+}
+
+.el-tabs__nav-scroll {
+    margin-top: 13px;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__nav {
+    margin-left: 42px;
+}
+
+.rowdeep {
+    background: #3a4050 !important;
+}
+
+.rowlight {
+    background: #404656 !important;
+}
+
+.el-table td, .el-table th.is-leaf {
+    border: none;
+}
+
+.el-table {
+    color: #ffffff;
+}
+
+.el-table thead {
+    color: #ffffff;
+}
+
+.el-table--border::after, .el-table--group::after, .el-table::before {
+    background-color: #404656
+}
+
+.el-table__header tr, .el-table__header th {
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+}
+
+.el-table__body tr, .el-table__body td {
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__item {
+    border: none;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__nav {
+    border: none;
+}
+
+.el-tabs__item {
+    color: #ffffff;
+}
+
+.el-tabs__item.is-active {
+    color: #f6d602;
+    background-color: #404656;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: -2em;
+    border-bottom-left-radius: -2em;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #212e3e !important;
+}
+.el-tabs__item:hover{
+    color: #f1dd59;
+}
