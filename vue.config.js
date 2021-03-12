@@ -10,7 +10,13 @@ module.exports = {
             .set("@assets", resolve("src/assets"))
             .set("@components", resolve("src/components"))
             .set("@views", resolve("src/views"))
+        config.plugin('html').tap(args => {
+            args[0].title = '旅游大数据管理平台';
+            return args;
+        })
     },
+
+
     lintOnSave: false,
 
 };

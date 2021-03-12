@@ -21,7 +21,7 @@
     </div>
     <div class="infobox">
       <span>{{ date }}</span>
-      <span>{{week}}</span>
+      <span>{{ week }}</span>
       <span>{{ time }}</span>
       <span><img :src="require('@assets/images/usericon.png')" alt="" /></span>
       <span> 13750816081</span>
