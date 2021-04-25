@@ -21,7 +21,7 @@
         <el-menu-item
           v-if="!item.childe"
           :index="item.index"
-          @click="menuClick(item.index, item.name)"
+          @click="menuClick(item)"
         >
           <i class="el-icon-c-scale-to-original"></i>
           <span slot="title" style="">{{ item.name }}</span>
@@ -36,14 +36,12 @@
             v-for="itemc in item.childe"
             :key="itemc.index"
             :index="itemc.index"
-            @click="menuClick(itemc.index, itemc.name)"
+            @click="menuClick(itemc)"
           >
             <span slot="title">{{ itemc.name }}</span>
           </el-menu-item>
         </el-submenu>
       </fragment>
-
-     
     </el-menu>
   </div>
 </template>
@@ -66,9 +64,12 @@ export default {
     handleClose(key, keyPath) {
       // console.log(key, keyPath);
     },
-    menuClick(index, name) {
+    menuClick(item) {
+      let index = item.index,
+        name = item.name,
+        isRouter = item.isRouter;
       this.$store.commit("setcurrentNav", { index, name });
-      if (index == "home") {
+      if (isRouter) {
         this.$router.push({ name: index });
       } else if (this.$route != "modelmanage") {
         this.$router.push({ name: "modelmanage" });

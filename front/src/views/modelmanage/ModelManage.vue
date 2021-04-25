@@ -12,7 +12,7 @@
       <div :slot="currentNav.name">
         <el-row type="flex" class="row-bg top-box" justify="space-between">
           <el-col :span="6">
-            <el-button size="mini" type="primary" @click="handleAdd"
+            <el-button size="mini" type="primary" @click="handleAdd" v-if="tableColumn.length"
               >新增</el-button
             >
           </el-col>
@@ -99,7 +99,7 @@ export default {
       fieldMap: {},
       rules: {},
       //配置需要根据id 转成文字的字段
-      idToName: ["play_id", "payment"],
+      idToName: ["play_id", "payment","parent_id"],
     };
   },
   created() {
@@ -149,8 +149,14 @@ export default {
       getResourcefield(params)
         .then((result) => {
           this.fieldData = result.data.list;
-          this.handleSelectData();
-          this.pagetotal = result.total;
+          if (this.fieldData == 0 ||  this.fieldData[0].code!=this.currentNav.index) {
+            this.tableData = [];
+            this.tableColumn = [];
+            this.showTabLoading = false;
+          } else {
+            this.handleSelectData();
+            this.pagetotal = result.total;
+          }
         })
         .catch((err) => {});
     },
@@ -469,7 +475,7 @@ export default {
               message: "新增成功",
               type: "success",
             });
-            this.queryDataOfResource();
+            this.getResourcefield();
             this.closetForm();
           }
         })

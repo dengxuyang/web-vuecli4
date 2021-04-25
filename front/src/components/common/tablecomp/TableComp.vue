@@ -14,6 +14,7 @@
       :row-style="{ height: '36px' }"
       :cell-style="{ padding: '0px' }"
       :header-row-style="{ height: '20px' }"
+      v-if="tableColumn.length != 0"
     >
       <el-table-column type="selection" width="55"> </el-table-column>
       <el-table-column
@@ -125,7 +126,7 @@
       </el-table-column>
     </el-table>
     <!-- 表格分页 -->
-    <div class="footer">
+    <div class="footer" v-if="tableColumn.length != 0">
       <div>
         <el-button
           :disabled="!selectRows.length"
@@ -218,13 +219,15 @@ export default {
   beforeUpdate() {
     this.$nextTick(() => {
       //在数据加载完，重新渲染表格
-      this.$refs["table"].doLayout();
+      if (this.$refs["table"]) {
+        this.$refs["table"].doLayout();
+      }
     });
   },
   filters: {
     //根据值返回相应数据
     filterData: function (value, map) {
-      return map.get(value) ? map.get(value) : "";
+      return map.get(Number(value)) ? map.get(Number(value)) : "";
     },
   },
 };

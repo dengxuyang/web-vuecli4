@@ -1,7 +1,8 @@
 export const leftNavData = [{
         index: 'home',
         name: '首页',
-        icon: ''
+        icon: '',
+        isRouter: true
     }, {
         index: 'basicdata',
         name: '基础数据',
@@ -14,7 +15,7 @@ export const leftNavData = [{
                 name: '住宿管理',
             },
             {
-                index: 'restaurant',
+                index: 'food',
                 name: '美食管理',
             },
             {
@@ -22,11 +23,11 @@ export const leftNavData = [{
                 name: '娱乐管理',
             },
             {
-                index: 'shop',
+                index: 'pro_owner',
                 name: '商店管理',
             },
             {
-                index: 'travel_line',
+                index: 'traffic',
                 name: '出行管理',
             }
         ]
@@ -58,13 +59,13 @@ export const leftNavData = [{
         index: 'tourismInfo',
         name: '资讯信息',
         childe: [{
-                index: 'consultation',
+                index: 'amt_informationpush',
                 name: '信息推送',
             }, {
-                index: 'cardvoucher',
+                index: 'amt_active',
                 name: '优惠活动',
             }, {
-                index: 'knowledgebase',
+                index: 'newsinformatio',
                 name: '新闻资讯',
             },
 
@@ -73,22 +74,22 @@ export const leftNavData = [{
         index: 'travelagent',
         name: '游客互动',
         childe: [{
-            index: 'tourists_lost',
+            index: 'sosinfo',
             name: '旅游求助',
         }, {
-            index: 'cardvoucher',
+            index: 'comment',
             name: '游客评论',
         }, {
-            index: 'vip1',
+            index: 'qainfo',
             name: '游客问答',
         }, {
-            index: 'vip2',
+            index: 'consultation',
             name: '游客咨询',
         }, {
             index: 'complaint_case',
             name: '游客投诉',
         }, {
-            index: 'vip',
+            index: 'member',
             name: '会员列表',
         }, ]
     }, {
@@ -96,21 +97,21 @@ export const leftNavData = [{
         name: '统计分析',
 
     }, {
-        index: 'foo1',
+        index: 'systemcConfig',
         name: '系统配置',
         childe: [{
-                index: 'foo1',
+                index: 'system_config',
                 name: '基础配置',
             }, {
-                index: 'foo2',
+                index: 'amt_imageconf',
                 name: '图片配置',
+            }, {
+                index: 'amt_modular',
+                name: '模块配置',
+
             }
 
         ]
-    }, {
-        index: 'foo3',
-        name: '模块配置',
-
     }
 
 ]

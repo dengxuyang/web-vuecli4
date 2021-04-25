@@ -52,6 +52,7 @@
               v-model="form[item.en_name]"
               placeholder="请选择"
               style="width: 100%"
+              clearable
             >
               <el-option
                 v-for="select in selectdata[item.en_name]"
@@ -146,13 +147,24 @@ export default {
     //处理回显
     handleBackView() {
       //判断是否为新增
-      if (!this.isEdit) {
-        //处理radio 添加时默认
-        for (const i of this.showFiledData) {
+
+      //处理radio 添加时默认
+      for (const i of this.showFiledData) {
+        if (!this.isEdit) {
           if (i.show_type == "2" && !i.associate) {
             this.$set(this.form, i.en_name, 1);
           } else if (i.show_type == "4" && !i.associate) {
             this.form[i.en_name] = "1";
+          }
+          //转成数字
+        } else {
+          if (
+            this.form[i.en_name] &&
+            (i.show_type == "2" || i.show_type == "4")
+          ) {
+            if (Number(this.form[i.en_name])) {
+              this.form[i.en_name] = Number(this.form[i.en_name]);
+            }
           }
         }
       }
