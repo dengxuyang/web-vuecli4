@@ -110,6 +110,13 @@ a {
 
 .top-box {
   margin-bottom: 15px;
+  height: 25px;
+}
+.top-box .el-form-item__content{
+ line-height: 0 !important;
+}
+.top-box .el-form-item__label{
+  line-height: 2 !important;
 }
 
 .home {

@@ -5,7 +5,8 @@
       <i v-show="!isCollapse" class="el-icon-caret-left iconcollapse"></i>
       <i v-show="isCollapse" class="el-icon-caret-right iconcollapse"></i>
     </div>
-    <el-menu
+    <div class="menu_box">
+ <el-menu
       default-active="1"
       mode="vertical"
       class="el-menu-vertical-demo"
@@ -43,6 +44,8 @@
         </el-submenu>
       </fragment>
     </el-menu>
+    </div>
+   
   </div>
 </template>
 
@@ -86,5 +89,11 @@ export default {
 .el-menu-item i {
   color: #ffffff;
 }
+.menu_box{
+  height: 100%;
+  overflow-y: auto;
+}
+.menu_box::-webkit-scrollbar { width: 0 !important }
+.menu_box { -ms-overflow-style: none; }
 </style>
 

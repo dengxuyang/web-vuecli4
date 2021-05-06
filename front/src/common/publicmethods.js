@@ -52,7 +52,10 @@ export function getNowTime(isDate = false) {
     }
     return defaultDate;
 }
-
+/**
+ *  验证失败定位
+ * @returns 
+ */
 export function failCheckPosition() {
     setTimeout(() => {
         var isError = document.getElementsByClassName("is-error");
@@ -60,3 +63,20 @@ export function failCheckPosition() {
     }, 100);
     return false;
 }
+/**
+ * 获取星期
+ * @returns 
+ */
+export function getWeek() {
+    let weeks = [
+      "星期日",
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六",
+    ];
+    let wk = new Date().getDay();
+    return weeks[wk];
+  }

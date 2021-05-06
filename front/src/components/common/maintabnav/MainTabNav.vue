@@ -8,76 +8,54 @@
       <span>{{ date }}</span>
       <span>{{ week }}</span>
       <span>{{ time }}</span>
-      <span> 管理员</span>
-      <span><i class="el-icon-arrow-down"></i></span>
+      <span
+        @mouseenter="isShowLogout = true"
+        @mouseleave="isShowLogout = false"
+      >
+        <span class="showout" @click="isShowLogout = !isShowLogout">
+          <span> 管理员</span>
+          <span>
+            <i v-if="!isShowLogout" class="el-icon-arrow-down"></i>
+            <i v-else class="el-icon-arrow-up"></i>
+          </span>
+        </span>
+        <transition name="slide-fade">
+          <div v-if="isShowLogout" class="logout" @click="logout">退出登录</div>
+        </transition>
+      </span>
     </div>
+
     <!-- 顶部主导航 -->
   </div>
 </template>
 
 <script>
+import { logout } from "@/login/conf/commonFunc.js";
+import { formatDate ,getWeek} from "@/common/publicmethods"
 export default {
   data() {
     return {
       activeIndex: "1",
       activeIndex2: "1",
-      time: this.formatDate(new Date(), "hh:mm:ss"),
-      date: this.formatDate(new Date(), "yyyy-MM-dd"),
-      week: this.getWeek(),
+      time: formatDate(new Date(), "hh:mm:ss"),
+      date: formatDate(new Date(), "yyyy-MM-dd"),
+      week: getWeek(),
+      isShowLogout: false,
     };
   },
   methods: {
+    logout() {
+      logout();
+    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    //格式化时间
-    formatDate(dateStr, fmt = "yyyy-MM-dd hh:mm:ss") {
-      if (!dateStr) return;
-      const date = new Date(dateStr);
-      const o = {
-        "M+": date.getMonth() + 1, // 月份
-        "d+": date.getDate(), // 日
-        "h+": date.getHours(), // 小时
-        "m+": date.getMinutes(), // 分
-        "s+": date.getSeconds(), // 秒
-        "q+": Math.floor((date.getMonth() + 3) / 3), // 季度
-        S: date.getMilliseconds(), // 毫秒
-      };
-
-      if (/(y+)/.test(fmt)) {
-        fmt = fmt.replace(
-          RegExp.$1,
-          `${date.getFullYear()}`.substr(4 - RegExp.$1.length)
-        );
-      }
-      for (const k in o) {
-        if (new RegExp(`(${k})`).test(fmt)) {
-          fmt = fmt.replace(
-            RegExp.$1,
-            RegExp.$1.length == 1 ? o[k] : `00${o[k]}`.substr(`${o[k]}`.length)
-          );
-        }
-      }
-      return fmt;
-    },
-    getWeek() {
-      let weeks = [
-        "星期日",
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-      ];
-      let wk = new Date().getDay();
-      return weeks[wk];
-    },
+   
   },
   mounted() {
     let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
     this.timer = setInterval(() => {
-      _this.time = this.formatDate(new Date(), "hh:mm:ss"); // 修改数据date
+      _this.time = formatDate(new Date(), "hh:mm:ss"); // 修改数据date
     }, 1000);
   },
   beforeDestroy() {
@@ -113,5 +91,43 @@ export default {
       margin-left: 3px;
     }
   }
+}
+.logout {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+  z-index: 99;
+  width: 150px;
+  height: 55px;
+  text-align: center;
+  background-color: #0369e6;
+  font-size: 14px;
+  cursor: pointer;
+}
+.showout {
+  cursor: pointer;
+  display: inline-block;
+  height: 60px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(30px);
+  opacity: 0;
 }
 </style>

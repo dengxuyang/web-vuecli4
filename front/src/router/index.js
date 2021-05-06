@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 //数据资源
 import Home from '@views/home/Home.vue'
 import ModelManage from '../views/modelmanage/ModelManage.vue'
+import Login from '@/login/login.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -18,6 +20,12 @@ const routes = [{
         path: '/modelmanage',
         name: 'modelmanage',
         component: ModelManage,
+    },
+    {
+        path: '/loginpage',
+        name: 'loginpage',
+        // redirect: { name: 'basedata' },
+        component: Login,
     }
 ]
 const originalPush = VueRouter.prototype.push
@@ -26,9 +34,13 @@ VueRouter.prototype.push = function push(location) {
 }
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
     routes
 })
+// router.beforeEach((to, from, next) => {
+//     if (to.name !== 'loginpage' && !store.state.login_status) next({ name: 'loginpage' })
+//     else next()
+// })
 
 export default router

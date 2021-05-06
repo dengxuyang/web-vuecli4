@@ -10,12 +10,31 @@
     >
       <!-- 固定的插槽名称需要和tabitem的label对应-->
       <div :slot="currentNav.name">
-        <el-row type="flex" class="row-bg top-box" justify="space-between">
+        <el-row type="flex" class="row-bg top-box" justify="space-between" v-if="tableColumn.length">
           <el-col :span="6">
-            <el-button size="mini" type="primary" @click="handleAdd" v-if="tableColumn.length"
+            <el-button
+              size="mini"
+              type="primary"
+              @click="handleAdd"
+              
               >新增</el-button
             >
           </el-col>
+
+          <el-form  @submit.native.prevent :inline="true">
+            <el-form-item label="名称：">
+              <el-input size="mini" @keyup.enter.native="onQuery" clearable v-model="searchKey"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button
+                size="mini"
+                type="primary"
+                @click="onQuery"
+                icon="el-icon-search"
+                >查询</el-button
+              >
+            </el-form-item>
+          </el-form>
         </el-row>
         <TableComp
           :table-data="tableData"
@@ -98,8 +117,9 @@ export default {
       selectData: {},
       fieldMap: {},
       rules: {},
+      searchKey: "", //搜索关键字
       //配置需要根据id 转成文字的字段
-      idToName: ["play_id", "payment","parent_id"],
+      idToName: ["play_id", "payment", "parent_id", "modul_id"],
     };
   },
   created() {
@@ -118,6 +138,8 @@ export default {
   destroyed() {},
   computed: {
     listenCurrentNav() {
+      //监听点击菜单
+      this.searchKey = "";
       return this.$store.state.currentNav;
     },
     showFieldData() {
@@ -127,6 +149,7 @@ export default {
     },
   },
   watch: {
+    //监听点击菜单
     listenCurrentNav(val) {
       this.$nextTick(() => {
         this.$set(this.tabitem[0], "label", val.name);
@@ -149,7 +172,10 @@ export default {
       getResourcefield(params)
         .then((result) => {
           this.fieldData = result.data.list;
-          if (this.fieldData == 0 ||  this.fieldData[0].code!=this.currentNav.index) {
+          if (
+            this.fieldData == 0 ||
+            this.fieldData[0].code != this.currentNav.index
+          ) {
             this.tableData = [];
             this.tableColumn = [];
             this.showTabLoading = false;
@@ -160,13 +186,19 @@ export default {
         })
         .catch((err) => {});
     },
+    //点击查询按钮
+    onQuery() {
+      this.pagetotal = 0;
+      this.queryDataOfResource();
+    },
     //获取表格数据
     queryDataOfResource() {
       if (!this.showTabLoading) {
         this.showTabLoading = true;
       }
       let params = {
-        data: { is_check: 1 },
+        data: { [this.tableColumn[0].prop]: this.searchKey, is_check: 1 },
+
         pageNo: this.pageNo,
         pageNum: this.pageNum,
         directory_code: this.currentNav.index,

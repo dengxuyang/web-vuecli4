@@ -8,12 +8,12 @@
             <div class="card">
               <div>会员数量</div>
               <div>
-                <el-button
+                <!-- <el-button
                   type="primary"
                   size="default"
                   @click="outputplanmodel"
-                  >导出测试</el-button
-                >
+                  >导出测试</el-button 
+                >-->
               </div>
             </div>
           </el-col>

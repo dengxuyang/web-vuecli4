@@ -89,9 +89,12 @@ export const leftNavData = [{
             index: 'complaint_case',
             name: '游客投诉',
         }, {
+            index: 'amt_telephone',
+            name: '常用电话',
+        }, {
             index: 'member',
             name: '会员列表',
-        }, ]
+        }]
     }, {
         index: 'foo',
         name: '统计分析',
