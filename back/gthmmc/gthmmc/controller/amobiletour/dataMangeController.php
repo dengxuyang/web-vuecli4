@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin:*');
+header("Access-Control-Allow-Origin:*");
 require_once dirname(__FILE__) . '/../../../superphp/core/controller/scontroller.php';
 require_once dirname(__FILE__) . '/../../common/log.php';
 require_once dirname(__FILE__) . '/common.php';
@@ -39,14 +39,13 @@ class dataMangeController extends SController{
 		$this->code_modeltable='dataModelfield';
 	}
 	public function before(){
-
-		//$this->WCommon->ssoCheck();
-		//$getUser = $this->WCommon->getUser();
+//		$this->WCommon->ssoCheck();
+//		$getUser = $this->WCommon->getUser();
 		$this->destination_id=600;
 		$this->logArr['system']="TBDMS";
 		$this->logArr['destination_id']=$this->destination_id;
-		$this->logArr['account']= $getUser['row_id'];
-		$this->logArr['name']= $getUser["account"];
+		$this->logArr['account']= 'admin';
+		$this->logArr['name']= '系统管理员';
 	}
 
 
@@ -675,6 +674,9 @@ class dataMangeController extends SController{
 			 $data = $this->controller->get_gp("data");
 		   $directory_code= $this->controller->get_gp("directory_code");
        $type='3';
+			 $data = stripslashes($data);
+	 	 	 $data = json_decode($data,true);
+		  	$data['is_delete']="0" ;
 			 $getData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
       echo json_encode($getData);
 	 }
@@ -755,8 +757,12 @@ class dataMangeController extends SController{
 		$data['destination_id']=$this->destination_id ;
 		$getData= $this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum);
 		$res=$getData['data']['list'];
+
 		//获取资源字段
 		$type='3';
+		$data = stripslashes($data);
+		$data = json_decode($data,true);
+	   	$data['is_delete']="0" ;
 		 $getFieldData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
 		 $resField=$getFieldData['data']['list'];
 		ob_end_clean();
@@ -835,6 +841,9 @@ class dataMangeController extends SController{
 		$data['destination_id']=$this->destination_id ;
 		//获取资源字段
 		$type='3';
+		$data = stripslashes($data);
+		$data = json_decode($data,true);
+	   	$data['is_delete']="0" ;
 		 $getFieldData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
 		 $resField=$getFieldData['data']['list'];
 		if(!empty($file)){
@@ -915,6 +924,9 @@ class dataMangeController extends SController{
 		// $res=$getData['data']['list'];
 		//获取资源字段
 		$type='3';
+		$data = stripslashes($data);
+		$data = json_decode($data,true);
+	   	$data['is_delete']="0" ;
 		 $getFieldData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
 		 $resField=$getFieldData['data']['list'];
 
@@ -930,7 +942,8 @@ class dataMangeController extends SController{
 		$strModelData="";
 		foreach($resField as $f)
 		{
-			if($f['name']!='行号'&&$f['name']!='创建时间'&&$f['name']!='是否删除'&&$f['name']!='目的地id'&&$f['name']!='目的地'){
+
+			if($f['en_name']!='row_id'&&$f['en_name']!='create_time'&&$f['en_name']!='is_delete'&&$f['en_name']!='destination_id'){
 			$strfield.="<td>".$f['name']."</td>";
 			if($f['type']=='datetime'||$f['type']=='date'){
 				$strModelData.="<td>".date('Y-m-d', time())."</td>";
