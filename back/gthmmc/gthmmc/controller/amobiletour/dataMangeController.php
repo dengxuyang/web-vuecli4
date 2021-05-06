@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin:*');
 require_once dirname(__FILE__) . '/../../../superphp/core/controller/scontroller.php';
 require_once dirname(__FILE__) . '/../../common/log.php';
 require_once dirname(__FILE__) . '/common.php';
@@ -38,10 +39,10 @@ class dataMangeController extends SController{
 		$this->code_modeltable='dataModelfield';
 	}
 	public function before(){
-		
+
 		//$this->WCommon->ssoCheck();
 		//$getUser = $this->WCommon->getUser();
-		$this->destination_id=531;
+		$this->destination_id=600;
 		$this->logArr['system']="TBDMS";
 		$this->logArr['destination_id']=$this->destination_id;
 		$this->logArr['account']= $getUser['row_id'];
@@ -362,7 +363,7 @@ class dataMangeController extends SController{
 		if($params['params']['currenttreeName']!=''){
 			$this->addlog('修改'.$params['params']['currenttreeName']);
 		}
-		
+
 		echo json_encode($responce);
 	}
 	//删除资源对应数据
