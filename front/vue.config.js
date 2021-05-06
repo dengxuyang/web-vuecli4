@@ -24,11 +24,11 @@ module.exports = {
         https: false,
         open: true,
         proxy: {
-            '/amobiletour_php': {
+            '/back': {
                 target: 'http://localhost',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/amobiletour_php': '/amobiletour_php'
+                    '^/back': '/back'
                 }
             }
         },
