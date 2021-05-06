@@ -123,6 +123,7 @@ class dataMangeController extends SController{
 	}
 	//查询资源数据
 	public function queryResource(){
+		
 		$pageNo = $this->controller->get_gp("pageNo");
 		$pageNum = $this->controller->get_gp("pageNum");
 		$data = $this->controller->get_gp("data");
@@ -284,7 +285,7 @@ class dataMangeController extends SController{
 	public function queryDataOfResource(){
 		$pageNo = $this->controller->get_gp("pageNo");
 		$pageNum = $this->controller->get_gp("pageNum");
-		$resourceCode = $this->controller->get_gp("resourceCode");
+		$directory_code = $this->controller->get_gp("directory_code");
 		$data = $this->controller->get_gp("data");
 		$str = stripslashes($data);
 		$data = json_decode($str,true);
@@ -292,11 +293,11 @@ class dataMangeController extends SController{
 
 		$response["errcode"] = -1;
 		$response["errMsg"] = "";
-		$res = $this->datacenter->getresources($data, $resourceCode, $pageNo, $pageNum);
+		$res = $this->datacenter->getresources($data, $directory_code, $pageNo, $pageNum);
 		if (!empty($res) && $res["errcode"] == 0){
 			$response["total"] = $res["data"]["total"];
 			$response["data"] = $res["data"]["list"];
-			$response["resourceCode"] = $resourceCode;
+			$response["directory_code"] = $directory_code;
 			$response["errcode"] = 0;
 		}else{
 			$response["errMsg"] = $res["errmsg"];
@@ -321,14 +322,14 @@ class dataMangeController extends SController{
 	public function addDataOfResource(){
 		$params = file_get_contents('php://input');
 		$params = json_decode($params, TRUE);
-		$data = $params['params']['data'];
-		$resourceCode =$params['params']['resourceCode'];
+		$data = $params['data'];
+		$directory_code =$params['directory_code'];
 		$data['destination_id']=$this->destination_id;
-		$responce["errcode"] = 0; //TODO
+		$responce["errCode"] = 0; //TODO
 		$responce["errMsg"] = "";
-		$res = $this->datacenter->addresources($data, $resourceCode);
-		if (!empty($res) && $res["errcode"] == 0){
-			$responce["errcode"] = 0;
+		$res = $this->datacenter->addresources($data, $directory_code);
+		if (!empty($res) && $res["errCode"] == 0){
+			$responce["errCode"] = 0;
 			$responce["data"] = $res["data"]["result"];
 		}else{
 			$responce["errMsg"] = $res["errmsg"];
@@ -343,18 +344,18 @@ class dataMangeController extends SController{
 		//$data = $this->controller->get_gp("data"); //数据
 		$params = file_get_contents('php://input');
 		$params = json_decode($params, TRUE);
-		$data = $params['params']['data'];
-		$resourceCode =$params['params']['resourceCode'];
+		$data = $params['data'];
+		$directory_code =$params['directory_code'];
 		// $data = stripslashes($data);
 		// $data = json_decode($data,true);
 		$data["destination_id"] = $this->destination_id; //目的地id
-		$responce["errcode"] = -1;
+		$responce["errCode"] = -1;
 		$responce["errMsg"] = "";
 		$row_id = $data["row_id"];
 		//foo 之前为 $this->resourceCode 邓旭阳修改 20201208 10:16
-		$res = $this->datacenter->modifyresources($data, $resourceCode, $row_id);
-		if (!empty($res) && $res["errcode"] == 0){
-			$responce["errcode"] = 0;
+		$res = $this->datacenter->modifyresources($data, $directory_code, $row_id);
+		if (!empty($res) && $res["errCode"] == 0){
+			$responce["errCode"] = 0;
 			$responce["data"] = $res["data"];
 		}else{
 			$responce["errMsg"] = $res["errmsg"];
@@ -362,16 +363,16 @@ class dataMangeController extends SController{
 		if($params['params']['currenttreeName']!=''){
 			$this->addlog('修改'.$params['params']['currenttreeName']);
 		}
-
+		
 		echo json_encode($responce);
 	}
 	//删除资源对应数据
 	public function deleteDataOfResource(){
 		$data = $this->controller->get_gp("data");
-		$resourceCode = $this->controller->get_gp("resourceCode");
+		$directory_code = $this->controller->get_gp("directory_code");
 		$data = stripslashes($data);
 		$data = json_decode($data,true);
-		$responce["errcode"] = -1;
+		$responce["errCode"] = -1;
 		$responce["errMsg"] = "";
 		$row_id = $data["row_id"];
 		if (empty($data["row_id"])){
@@ -380,9 +381,9 @@ class dataMangeController extends SController{
 			return;
 		}
 		//foo 之前为 $this->resourceQysbn 邓旭阳修改 20201208 10:22
-		$res = $this->datacenter->deleteresources($row_id, $resourceCode);
-		if (!empty($res) && $res["errcode"] == 0){
-			$responce["errcode"] = 0;
+		$res = $this->datacenter->deleteresources($row_id, $directory_code);
+		if (!empty($res) && $res["errCode"] == 0){
+			$responce["errCode"] = 0;
 			$responce["data"] = $res["data"];
 		}else{
 			$responce["errMsg"] = $res["errmsg"];
@@ -672,11 +673,11 @@ class dataMangeController extends SController{
 			 $pageNo = $this->controller->get_gp("pageNo");
 			 $pageNum = $this->controller->get_gp("pageNum");
 			 $data = $this->controller->get_gp("data");
-		   $directory_code= $this->controller->get_gp("directory_code");
-       $type='3';
+		   	 $directory_code= $this->controller->get_gp("directory_code");
+      		 $type='3';
 			 $data = stripslashes($data);
 	 	 	 $data = json_decode($data,true);
-		  	$data['is_delete']="0" ;
+		  	 $data['is_delete']="0" ;
 			 $getData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
       echo json_encode($getData);
 	 }
@@ -757,12 +758,8 @@ class dataMangeController extends SController{
 		$data['destination_id']=$this->destination_id ;
 		$getData= $this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum);
 		$res=$getData['data']['list'];
-
 		//获取资源字段
 		$type='3';
-		$data = stripslashes($data);
-		$data = json_decode($data,true);
-	   	$data['is_delete']="0" ;
 		 $getFieldData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
 		 $resField=$getFieldData['data']['list'];
 		ob_end_clean();
@@ -841,9 +838,6 @@ class dataMangeController extends SController{
 		$data['destination_id']=$this->destination_id ;
 		//获取资源字段
 		$type='3';
-		$data = stripslashes($data);
-		$data = json_decode($data,true);
-	   	$data['is_delete']="0" ;
 		 $getFieldData=$this->datacenter->getresources($data,$directory_code,$pageNo,$pageNum,$type);
 		 $resField=$getFieldData['data']['list'];
 		if(!empty($file)){
@@ -917,6 +911,7 @@ class dataMangeController extends SController{
 		$pageNum = 999;
 		$data = $this->controller->get_gp("data");
 		$directory_code=$this->controller->get_gp("directory_code");
+	
 		$str = stripslashes($data);
 		$data = json_decode($str,true);
 		$data['destination_id']=$this->destination_id ;
@@ -942,8 +937,7 @@ class dataMangeController extends SController{
 		$strModelData="";
 		foreach($resField as $f)
 		{
-
-			if($f['en_name']!='row_id'&&$f['en_name']!='create_time'&&$f['en_name']!='is_delete'&&$f['en_name']!='destination_id'){
+			if($f['name']!='行号'&&$f['name']!='创建时间'&&$f['name']!='是否删除'&&$f['name']!='目的地id'&&$f['name']!='目的地'){
 			$strfield.="<td>".$f['name']."</td>";
 			if($f['type']=='datetime'||$f['type']=='date'){
 				$strModelData.="<td>".date('Y-m-d', time())."</td>";
@@ -993,7 +987,7 @@ class dataMangeController extends SController{
 		echo "</table>";
 	}
 	//批量删除
-public function deletebatchdata(){
+public function deleteBatchData(){
 	//standard
 	$directory_code=$this->controller->get_gp("directory_code");
 	$rows= $this->controller->get_gp("rows");
