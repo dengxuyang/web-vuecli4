@@ -3,7 +3,7 @@
     <!-- 图片上传 -->
     <div v-show="imgsrc" class="avatar-uploader el-upload imgLoadBox">
       <img
-        :src="(imgsrc ? '/amobiletour_php/gthmmc' : '') + imgsrc"
+        :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc"
         class="avatar"
       />
       <div class="imgBoxmMask"></div>
