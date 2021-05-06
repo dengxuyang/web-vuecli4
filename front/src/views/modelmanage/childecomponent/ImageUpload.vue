@@ -18,7 +18,7 @@
       v-show="!imgsrc"
       class="avatar-uploader"
       name="Filedata"
-      action="/amobiletour_php/gthmmc/gthmmc/index.php?m=amobiletour&c=uploadWeb&a=imageUpload"
+      action="/back/gthmmc/gthmmc/index.php?m=amobiletour&c=uploadWeb&a=imageUpload"
       :on-success="(res, file) => handleAvatarSuccess(res, filedname)"
       list-type="picture"
       :show-file-list="false"
@@ -31,7 +31,7 @@
     <el-dialog :visible.sync="dialogVisible[filedname]">
       <img
         width="100%"
-        :src="(imgsrc ? '/amobiletour_php/gthmmc' : '') + imgsrc"
+        :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc"
         alt=""
       />
     </el-dialog>

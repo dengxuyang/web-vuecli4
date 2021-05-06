@@ -5,7 +5,7 @@
       ref="upload"
       class="upload-demo"
       :limit="1"
-      action="/amobiletour_php/gthmmc/gthmmc/index.php?m=amobiletour&c=uploadWeb&a=fileUpload"
+      action="/back/gthmmc/gthmmc/index.php?m=amobiletour&c=uploadWeb&a=fileUpload"
       :on-success="(res, file) => handleAvatarSuccess(res, filedname)"
       name="Filedata"
       :file-list="fileList"
@@ -19,8 +19,8 @@
     </el-upload>
     <a
       v-show="filesrc !== ''"
-      :download="(filesrc ? '/amobiletour_php/gthmmc' : '') + filesrc"
-      :href="(filesrc ? '/amobiletour_php/gthmmc' : '') + filesrc"
+      :download="(filesrc ? '/back/gthmmc' : '') + filesrc"
+      :href="(filesrc ? '/back/gthmmc' : '') + filesrc"
       >{{ filesrc | filepathfilter }}</a
     >
 
