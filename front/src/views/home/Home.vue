@@ -7,6 +7,7 @@
           <el-col :span="6" :offset="0">
             <div class="card">
               <div>会员数量</div>
+              <div>0</div>
               <div>
                 <!-- <el-button
                   type="primary"
@@ -20,16 +21,19 @@
           <el-col :span="6" :offset="0">
             <div class="card">
               <div>评论数量</div>
+               <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
               <div>咨询数量</div>
+               <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
               <div>投诉数量</div>
+               <div>0</div>
             </div>
           </el-col>
         </el-row>
@@ -41,46 +45,53 @@
         <el-row :gutter="20">
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>会员数量</div>
-              <div>1212</div>
+              <div>景点数量</div>
+               <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>评论数量</div>
+              <div>美食数量</div>
+              <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>咨询数量</div>
+              <div>住宿数量</div>
+              <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>投诉数量</div>
+              <div>娱乐数量</div>
+               <div>0</div>
             </div>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>会员数量</div>
-              <div>1212</div>
+              <div>商店数量</div>
+               <div>0</div>
+              <div></div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>评论数量</div>
+              <div>商品数量</div>
+               <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>咨询数量</div>
+              <div>线路数量</div>
+               <div>0</div>
             </div>
           </el-col>
           <el-col :span="6" :offset="0">
             <div class="card">
-              <div>投诉数量</div>
+              <div>门票数量</div>
+               <div>0</div>
             </div>
           </el-col>
         </el-row>
@@ -142,5 +153,9 @@ export default {
   text-align: center;
   padding-top: 50px;
   color: #ffffff;
+}
+.card>:nth-child(2){
+  font-size: 40px;
+  margin-top: 20px;
 }
 </style>
