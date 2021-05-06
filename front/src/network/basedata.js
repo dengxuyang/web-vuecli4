@@ -1,5 +1,5 @@
 import { request } from '@network/request';
-const dataApi = '/back/amobiletour_php/gthmmc/gthmmc/index.php?m=amobiletour&c=dataMange&a='
+const dataApi = '/back/gthmmc/gthmmc/index.php?m=amobiletour&c=dataMange&a='
     /**
      * 获取资源字段方法
      * @param {*} params 
