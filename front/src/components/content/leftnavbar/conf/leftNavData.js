@@ -1,11 +1,12 @@
 export const leftNavData = [{
         index: 'home',
         name: '首页',
-        icon: '',
+        icon: 'el-icon-s-home',
         isRouter: true
     }, {
         index: 'basicdata',
         name: '基础数据',
+        icon: 'el-icon-s-order',
         childe: [{
                 index: 'play',
                 name: '景点管理',
@@ -34,6 +35,7 @@ export const leftNavData = [{
     }, {
         index: 'travelCommunalFacilities',
         name: '景区设施',
+        icon: 'el-icon-office-building',
         childe: [{
                 index: 'toilet',
                 name: '公共厕所',
@@ -43,6 +45,7 @@ export const leftNavData = [{
     }, {
         index: 'travelProduct',
         name: '旅游产品',
+        icon: 'el-icon-shopping-bag-1',
         childe: [{
                 index: 'commodity',
                 name: '特色商品',
@@ -58,6 +61,8 @@ export const leftNavData = [{
     }, {
         index: 'tourismInfo',
         name: '资讯信息',
+        icon: 'el-icon-chat-line-square',
+       
         childe: [{
                 index: 'amt_informationpush',
                 name: '信息推送',
@@ -65,7 +70,7 @@ export const leftNavData = [{
                 index: 'amt_active',
                 name: '优惠活动',
             }, {
-                index: 'newsinformatio',
+                index: 'newsinformation',
                 name: '新闻资讯',
             },
 
@@ -73,6 +78,7 @@ export const leftNavData = [{
     }, {
         index: 'travelagent',
         name: '游客互动',
+        icon: 'el-icon-user',
         childe: [{
             index: 'sosinfo',
             name: '旅游求助',
@@ -97,10 +103,12 @@ export const leftNavData = [{
         }]
     }, {
         index: 'foo',
+        icon:'el-icon-s-data',
         name: '统计分析',
 
     }, {
         index: 'systemcConfig',
+        icon:'el-icon-setting',
         name: '系统配置',
         childe: [{
                 index: 'system_config',

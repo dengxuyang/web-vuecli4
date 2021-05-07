@@ -7,14 +7,11 @@
     </div>
     <div class="menu_box">
       <el-menu
-        default-active="1"
+        :default-active="defaultActive"
         mode="vertical"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
-        background-color="#499afe"
-        text-color="#fff"
-        active-text-color="#fce169"
         :collapse="isCollapse"
         unique-opened
       >
@@ -23,14 +20,15 @@
             v-if="!item.childe"
             :index="item.index"
             @click="menuClick(item)"
+            class="one_menu_item"
           >
-            <i class="el-icon-c-scale-to-original"></i>
+            <i :class="item.icon"></i>
             <span slot="title" style="">{{ item.name }}</span>
           </el-menu-item>
           <!-- 多级 -->
-          <el-submenu v-else :key="item.index" :index="item.index">
+          <el-submenu :ref="'submenu'+item.index" v-else :key="item.index" :index="item.index">
             <template slot="title">
-              <i style="color: #ffffff" class="el-icon-document"></i>
+              <i style="color: #ffffff" :class="item.icon"></i>
               <span slot="title">{{ item.name }}</span>
             </template>
             <el-menu-item
@@ -38,6 +36,7 @@
               :key="itemc.index"
               :index="itemc.index"
               @click="menuClick(itemc)"
+              class="submenu_item"
             >
               <span slot="title">{{ itemc.name }}</span>
             </el-menu-item>
@@ -56,15 +55,16 @@ export default {
       isCollapse: false,
       openeds: [1],
       leftNavData: leftNavData,
+      defaultActive: "home",
     };
   },
 
   methods: {
     handleOpen(key, keyPath) {
-      // console.log(key, keyPath);
+      this.$refs['submenu'+key][0].$children[0].$el.click()
     },
     handleClose(key, keyPath) {
-      // console.log(key, keyPath);
+    
     },
     menuClick(item) {
       let index = item.index,
@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 215px;
 }
@@ -98,8 +98,39 @@ export default {
 .menu_box {
   -ms-overflow-style: none;
 }
-.el-aside .el-submenu .el-menu-item {
+.el-menu {
+  background-color: unset;
+}
+.el-menu-item.submenu_item.is-active {
+  color: #499afe;
   background-color: #ffffff;
+  span {
+    border-bottom: 2px solid #499afe;
+  }
+}
+.submenu_item span {
+  margin-left: 8px;
+  padding-bottom: 5px;
+}
+.el-submenu__title:hover {
+  color: #e70f0f;
+}
+
+.one_menu_item.is-active {
+  background-color: #1b76e8 !important;
+  color: #ffffff;
+  border-bottom: 0px solid;
+}
+.one_menu_item.el-menu-item:hover {
+  // color: #ffffff;
+  background-color: #1b76e8 !important;
+}
+.one_menu_item.el-menu-item {
+  color: #ffffff;
+  padding-left: 0px;
+}
+.el-submenu.is-active {
+  background-color: #1b76e8 !important;
 }
 </style>
 

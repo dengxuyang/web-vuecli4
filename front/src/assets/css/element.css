@@ -26,10 +26,15 @@
     color: #ffffff !important;
 }
 
-.el-menu-item.is-active {
-    background-color: #0369e6 !important;
+.el-submenu__title{
+    color: #ffffff !important;
 }
-
+/* .el-menu-item:hover{
+    background-color: #1b76e8 !important;
+} */
+.el-submenu__title:hover{
+    background-color: #1b76e8 !important;
+}
 .el-table th>.cell {
     padding-left: 14px !important;
 }
