@@ -26,7 +26,12 @@
             <span slot="title" style="">{{ item.name }}</span>
           </el-menu-item>
           <!-- 多级 -->
-          <el-submenu :ref="'submenu'+item.index" v-else :key="item.index" :index="item.index">
+          <el-submenu
+            :ref="'submenu' + item.index"
+            v-else
+            :key="item.index"
+            :index="item.index"
+          >
             <template slot="title">
               <i style="color: #ffffff" :class="item.icon"></i>
               <span slot="title">{{ item.name }}</span>
@@ -61,11 +66,15 @@ export default {
 
   methods: {
     handleOpen(key, keyPath) {
-      this.$refs['submenu'+key][0].$children[0].$el.click()
+      //展开菜单时 默认选择第一项子菜单
+      let submenuDom = this.$refs["submenu" + key][0];
+      //当菜单不处于活跃状态时选中
+      if (!submenuDom.active) {
+        submenuDom.$children[0].$el.click();
+      }
     },
-    handleClose(key, keyPath) {
-    
-    },
+    handleClose(key, keyPath) {},
+    //点击菜单
     menuClick(item) {
       let index = item.index,
         name = item.name,
