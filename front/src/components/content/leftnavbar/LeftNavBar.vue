@@ -31,6 +31,7 @@
             v-else
             :key="item.index"
             :index="item.index"
+           
           >
             <template slot="title">
               <i style="color: #ffffff" :class="item.icon"></i>
@@ -70,7 +71,11 @@ export default {
       let submenuDom = this.$refs["submenu" + key][0];
       //当菜单不处于活跃状态时选中
       if (!submenuDom.active) {
-        submenuDom.$children[0].$el.click();
+        //解决js线程阻塞ui线程 菜单卡顿问题
+        setTimeout(() => {
+          submenuDom.$children[0].$el.click();
+        }, 350);
+        
       }
     },
     handleClose(key, keyPath) {},
