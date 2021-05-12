@@ -94,3 +94,13 @@ export function outputplanmodel(params) {
       
     })
 }
+export function activeStatisticsdata(params){
+    return request({
+        method: 'get',
+        url: dataApi + 'activeStatisticsdata',
+        // headers: {'Content-Type': 'application/json'},
+        params,
+       
+      
+    })
+}

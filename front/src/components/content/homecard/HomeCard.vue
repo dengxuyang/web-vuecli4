@@ -13,8 +13,11 @@
       ></div>
     </div>
     <div class="right">
-      <div>{{info.number}}</div>
-      <div>{{info.text}}</div>
+      <div>
+        <!-- {{ !info.number ? 0 : info.number }} -->
+        <count-to :startVal=0 :endVal='!info.number ? 0 : info.number' :duration='1000'></count-to>
+        </div>
+      <div>{{ info.text }}</div>
     </div>
     <div
       class="card_reflection"
@@ -26,29 +29,36 @@
 </template>
 
 <script>
+//count to 插件
+import CountTo from "vue-count-to";
 export default {
-  props: ["colorleft", "colorright", "colorreflection", "icon","info"],
+  components: {
+    CountTo,
+  },
+  props: ["colorleft", "colorright", "colorreflection", "icon", "info"],
+  watch: {
+    // info(val){
+    //   this.info.number=val
+    //   console.log(val);
+    // }
+  },
   data() {
     return {
       img: require("@assets/images/" + this.icon + ".png"),
     };
   },
-  mounted() {
-    // this.img = require("@assets/images/" + this.icon + ".png");
-  },
+ 
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
-  //   background: linear-gradient(to right, #64f6b7, #177d1c);
   height: 150px;
   border-radius: 8px;
   text-align: center;
   color: #ffffff;
   position: relative;
   .card_reflection {
-    // background: linear-gradient(#c7f3d7, #ffffff);
     height: 30px;
     width: 100%;
     border-radius: 8px;
@@ -80,7 +90,6 @@ export default {
     height: 60px;
     background-color: #ffffff;
     border-radius: 50%;
-    //background-image: url("~@assets/images/icon_vip.png");
     background-repeat: no-repeat;
     background-position: center;
   }
