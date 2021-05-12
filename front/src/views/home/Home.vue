@@ -162,7 +162,7 @@ export default {
         .then((result) => {
          // this.numO[code]=result.data.list[0].countNums
           this.$set(this.numO,code,result.data.list[0].countNums)
-          console.log(this.numO);
+          
         })
         .catch((err) => {});
     },
