@@ -74,6 +74,7 @@ export function getToken() {
 }
 
 export function getLoginPage() {
+    debugger
     var code = getQueryVariable("code");
     var login_page = getUrlParam("login_page");
     var url = document.URL;
