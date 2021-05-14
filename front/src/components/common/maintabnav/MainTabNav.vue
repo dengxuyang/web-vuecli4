@@ -31,7 +31,7 @@
 
 <script>
 import { logout } from "@/login/conf/commonFunc.js";
-import { formatDate ,getWeek} from "@/common/publicmethods"
+import { formatDate, getWeek } from "@/common/publicmethods";
 export default {
   data() {
     return {
@@ -50,7 +50,6 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-   
   },
   mounted() {
     let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致

@@ -38,9 +38,9 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
-// router.beforeEach((to, from, next) => {
-//     if (to.name !== 'loginpage' && !store.state.login_status) next({ name: 'loginpage' })
-//     else next()
-// })
+router.beforeEach((to, from, next) => {
+    if (to.name !== 'loginpage' && !store.state.login_status) next({ name: 'loginpage' })
+    else next()
+})
 
 export default router

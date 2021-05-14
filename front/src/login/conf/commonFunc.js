@@ -3,6 +3,7 @@ import store from '../../store'
 import router from '../../router'
 var code = getUrlParam("code");
 var redirect_uri = document.URL;
+var logout_uri = document.URL.replace(code, '');
 export function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
@@ -14,7 +15,6 @@ export function getQueryVariable(variable) {
     }
     return false;
 }
-
 export function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -23,11 +23,10 @@ export function getUrlParam(name) {
 }
 
 export function logout() {
-  
     var login_page = getUrlParam("login_page");
     var systemName;
-    if (!login_page) {
-        login_page = "";
+    if (!login_page || login_page == "") {
+        login_page = "jqx";
     }
     var username = getUrlParam("u");
     if (!username) {
@@ -45,10 +44,10 @@ export function logout() {
     if (!title) {
         title = "";
     }
-  
+    store.commit("setLoginStatus", false);
     window.location =
         process.env.VUE_APP_Log_out +
-        redirect_uri +
+        logout_uri +
         "&login_page=" +
         login_page +
         "&t=" +
@@ -77,8 +76,14 @@ export function getToken() {
 export function getLoginPage() {
     var code = getQueryVariable("code");
     var login_page = getUrlParam("login_page");
-    if (!login_page) {
-        login_page = "gc";
+    var url = document.URL;
+    if (!login_page || login_page == "") {
+        login_page = "jqx";
+        let urlarr = url.replace("http://", "").split("/");
+        if (!urlarr[0].includes("login_page")) {
+            urlarr[0] = urlarr[0] + '?login_page=' + login_page
+        }
+        url = "http://" + urlarr.join("")
     }
     var username = getUrlParam("u");
     if (!username) {
@@ -96,13 +101,16 @@ export function getLoginPage() {
     if (!title) {
         title = "";
     }
-    var url = document.URL;
+
+
     if (!code || code == "") {
         redirect_uri = encodeURIComponent(url);
         window.location =
             process.env.VUE_APP_Log_in +
             "?client_id=appid&redirect_uri=" +
             redirect_uri +
+            "&login_page=" +
+            login_page +
             "&response_type=code&scope=read";
     } else {
         store.commit("setLoginStatus", true);
