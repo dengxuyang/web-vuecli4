@@ -3,7 +3,9 @@ import store from '../../store'
 import router from '../../router'
 var code = getUrlParam("code");
 var redirect_uri = document.URL;
+var redirect_uri = 'http://blzh.likezou.com/';
 var logout_uri = document.URL.replace(code, '');
+const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 export function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
@@ -76,16 +78,29 @@ export function getToken() {
 export function getLoginPage() {
   
     var code = getQueryVariable("code");
+   
     var login_page = getUrlParam("login_page");
     var url = document.URL;
-    if (!login_page || login_page == "") {
-        login_page = "jqx";
-        let urlarr = url.replace("http://", "").split("/");
-        if (!urlarr[0].includes("login_page")) {
-            urlarr[0] = urlarr[0] + '?login_page=' + login_page
+    if(IS_PROD){
+        if (!login_page || login_page == "") {
+            login_page = "jqx";
+            let urlarr = url.replace("http://", "").split("/");
+            if (!urlarr[3].includes("login_page")) {
+                urlarr[3] = urlarr[3].replace("#",'?login_page=' + login_page+"#") 
+            }
+            url = "http://" + urlarr.join("/")
         }
-        url = "http://" + urlarr.join("/")
+    }else{
+        if (!login_page || login_page == "") {
+            login_page = "jqx";
+            let urlarr = url.replace("http://", "").split("/");
+            if (!urlarr[0].includes("login_page")) {
+                urlarr[0] = urlarr[0] + '?login_page=' + login_page
+            }
+            url = "http://" + urlarr.join("")
+        }
     }
+   
     var username = getUrlParam("u");
     if (!username) {
         username = "";
@@ -103,7 +118,7 @@ export function getLoginPage() {
         title = "";
     }
 
-
+   
     if (!code || code == "") {
         redirect_uri = encodeURIComponent(url);
         window.location =
