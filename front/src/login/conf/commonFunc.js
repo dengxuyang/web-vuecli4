@@ -74,7 +74,7 @@ export function getToken() {
 }
 
 export function getLoginPage() {
-    debugger
+  
     var code = getQueryVariable("code");
     var login_page = getUrlParam("login_page");
     var url = document.URL;
@@ -84,7 +84,7 @@ export function getLoginPage() {
         if (!urlarr[0].includes("login_page")) {
             urlarr[0] = urlarr[0] + '?login_page=' + login_page
         }
-        url = "http://" + urlarr.join("")
+        url = "http://" + urlarr.join("/")
     }
     var username = getUrlParam("u");
     if (!username) {
