@@ -105,7 +105,7 @@ class uploadWebController extends SController{
 			$tempFile = str_replace('\\\\', '\\', $_FILES['Filedata']['tmp_name']);
 			$targetPath = $targetFolder;
 
-			$fileTypes = array('rar','zip','docx','.doc','xls','xlsx');
+			$fileTypes = array('rar','zip','docx','.doc','xls','xlsx','mp3','mp4','txt');
 			$fileParts = pathinfo($_FILES['Filedata']['name']);
 			if (in_array(strtolower($fileParts['extension']),$fileTypes)) {
 				if ( file_exists($tempFile)){
