@@ -72,7 +72,13 @@ export const leftNavData = [{
             }, {
                 index: 'newsinformation',
                 name: '新闻资讯',
-            },
+            }, {
+                index: 'amt_picshow',
+                name: '美图欣赏',
+            }, {
+                index: 'amt_videoshow',
+                name: '精彩视频',
+            }
 
         ]
     }, {
