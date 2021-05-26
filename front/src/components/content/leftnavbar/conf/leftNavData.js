@@ -121,7 +121,10 @@ export const leftNavData = [{
                 name: '模块配置',
 
             }
-
+            , {
+                index: 'tickettype',
+                name: '门票类型',
+            }
         ]
     }
 
