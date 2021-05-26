@@ -5,7 +5,7 @@ class WCommon extends SController{
 
 	private $dbUrl = '';
 	private $ssoUrl = '';
-	private $systemId = 'TBDMS';
+	private $systemId = 'AMG';
 	private $appid = 'appid';
 	private $secret = 'appsecret';
 	private $authorizeUrl;
