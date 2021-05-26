@@ -33,6 +33,29 @@ insert into crdc_resourcefield(id, name, en_name, code, restraint, type, is_edit
 (8, '创建时间', 'create_time', @code_, 0, 'datetime', 0, 0, '', 0, '', now(), 0,0),
 (9, '是否删除', 'is_delete', @code_, 0, 'tinyint', 0, 0, '', 0, '', now(), 0,0);
 
+--    出行管理表
+drop table if exists crdc_traffic;
+create table crdc_traffic(
+  row_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  name  varchar(100) DEFAULT '',
+  depict varchar(300) DEFAULT '',
+  content text,
+  image varchar(255) DEFAULT '', 
+  is_check tinyint DEFAULT '0',  
+  `create_time` datetime ,
+  destination_id int(10),
+  is_delete tinyint DEFAULT 0,
+  PRIMARY KEY(row_id)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
+create unique index crdc_traffic_row_id on crdc_food(row_id);
+
+set @parent_id = 7;
+set @code_ = 'traffic';
+ insert into crdc_resourcedirectory(name, code, table_name, description, parent_id, remark, is_edit, is_map, is_relation, is_statistics, create_time, is_delete,is_check) values
+('出行管理表', @code_, 'crdc_traffic', '出行管理表', @parent_id, '', 1, 0, 0, 0, now(), 0,0);
+
+
+
 --    游客服务点表
 drop table if exists crdc_servicepoint;
 create table crdc_servicepoint(
@@ -103,8 +126,8 @@ insert into crdc_resourcefield(id, name, en_name, code, restraint, type, is_edit
 (8, '创建时间', 'create_time', @code_, 0, 'datetime', 0, 0, '', 0, '', now(), 0,0),
 (9, '是否删除', 'is_delete', @code_, 0, 'tinyint', 0, 0, '', 0, '', now(), 0,0);
 --    一机游优惠活动表
-drop table if exists crdc_amt_informationpush;
-create table crdc_amt_informationpush(
+drop table if exists crdc_amt_active;
+create table crdc_amt_active(
   row_id int(10) unsigned NOT NULL AUTO_INCREMENT,
   name  varchar(100) DEFAULT '',
   depict varchar(300) DEFAULT '',
@@ -116,12 +139,12 @@ create table crdc_amt_informationpush(
   is_delete tinyint DEFAULT 0,
   PRIMARY KEY(row_id)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8;
-create unique index crdc_amt_informationpush_row_id on crdc_amt_informationpush(row_id);
+create unique index crdc_amt_active_row_id on crdc_amt_active(row_id);
 
 set @parent_id = 156;
-set @code_ = 'amt_informationpush';
+set @code_ = 'amt_active';
  insert into crdc_resourcedirectory(name, code, table_name, description, parent_id, remark, is_edit, is_map, is_relation, is_statistics, create_time, is_delete,is_check) values
-('一机游优惠活动表', @code_, 'crdc_amt_informationpush', '一机游优惠活动表', @parent_id, '', 1, 0, 0, 0, now(), 0,0);
+('一机游优惠活动表', @code_, 'crdc_amt_active', '一机游优惠活动表', @parent_id, '', 1, 0, 0, 0, now(), 0,0);
 
 insert into crdc_resourcefield(id, name, en_name, code, restraint, type, is_edit, is_intable, associate, show_type, remark, create_time, is_delete,is_statistics) values
 (1, '行号', 'row_id', @code_, 0, 'int(10)', 0, 0, '', 0, '', now(), 0,0),
