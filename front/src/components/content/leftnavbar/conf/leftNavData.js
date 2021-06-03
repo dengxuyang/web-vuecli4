@@ -40,6 +40,10 @@ export const leftNavData = [{
                 index: 'toilet',
                 name: '公共厕所',
             },
+             {
+                index: 'equipment',
+                name: '停车场',
+            },
 
         ]
     }, {
@@ -62,7 +66,7 @@ export const leftNavData = [{
         index: 'tourismInfo',
         name: '资讯信息',
         icon: 'el-icon-chat-line-square',
-       
+
         childe: [{
                 index: 'amt_informationpush',
                 name: '信息推送',
@@ -109,29 +113,27 @@ export const leftNavData = [{
         }]
     }, {
         index: 'foo',
-        icon:'el-icon-s-data',
+        icon: 'el-icon-s-data',
         name: '统计分析',
 
     }, {
         index: 'systemcConfig',
-        icon:'el-icon-setting',
+        icon: 'el-icon-setting',
         name: '系统配置',
         childe: [{
-                index: 'system_config',
-                name: '基础配置',
-            }, {
-                index: 'amt_imageconf',
-                name: '图片配置',
-            }, {
-                index: 'amt_modular',
-                name: '模块配置',
+            index: 'system_config',
+            name: '基础配置',
+        }, {
+            index: 'amt_imageconf',
+            name: '图片配置',
+        }, {
+            index: 'amt_modular',
+            name: '模块配置',
 
-            }
-            , {
-                index: 'tickettype',
-                name: '门票类型',
-            }
-        ]
+        }, {
+            index: 'tickettype',
+            name: '门票类型',
+        }]
     }
 
 ]
