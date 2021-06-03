@@ -83,6 +83,10 @@ export const leftNavData = [{
                 index: 'amt_videoshow',
                 name: '精彩视频',
             }
+            , {
+                index: 'amt_strategy',
+                name: '旅游攻略',
+            }
 
         ]
     }, {
