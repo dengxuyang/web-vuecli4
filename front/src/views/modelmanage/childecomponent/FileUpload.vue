@@ -7,6 +7,7 @@
       :limit="1"
       action="/back/gthmmc/gthmmc/index.php?m=amobiletour&c=uploadWeb&a=fileUpload"
       :on-success="(res, file) => handleAvatarSuccess(res, filedname)"
+      :on-progress="fileProgress"
       name="Filedata"
       :file-list="fileList"
       list-type="text"
@@ -65,6 +66,9 @@ export default {
     previewImg(itemname) {
       this.$set(this.dialogVisible, itemname, true);
     },
+    fileProgress(e){
+     console.log(parseInt(e.percent));
+    }
   },
   filters: {
     filepathfilter: function (value) {

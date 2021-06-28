@@ -12,12 +12,15 @@
     "core-js": "^3.6.5",
     "echarts": "^5.0.2",
     "element-ui": "^2.15.1",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^0.5.1",
     "vue": "^2.6.11",
     "vue-cli-configjs": "^2.0.0",
     "vue-count-to": "^1.0.13",
     "vue-fragment": "^1.5.2",
     "vue-router": "^3.2.0",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "wangeditor": "^4.7.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

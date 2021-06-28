@@ -84,12 +84,16 @@
               format="yyyy-MM-dd"
               type="date"
             ></el-date-picker>
+             <!-- 富文本 -->
+           <editor  v-model="form[item.en_name]" :isClear="isClear" v-else-if="item.show_type == 8"></editor>
+         
             <!-- 文件上传 -->
             <FileUpload
               v-else-if="item.show_type == 10"
               :filesrc="form[item.en_name]"
               :filedname="item.en_name"
             ></FileUpload>
+           
           </el-form-item>
         </el-col>
       </el-row>
@@ -105,10 +109,12 @@
 import { getNowTime, failCheckPosition } from "@common/publicmethods";
 import ImageUpload from "./ImageUpload";
 import FileUpload from "./FileUpload";
+import editor from '@components/common/editor/editor'
 export default {
   components: {
     ImageUpload,
     FileUpload,
+    editor
   },
   props: {
     showFiledData: {
@@ -138,12 +144,14 @@ export default {
   data() {
     return {
       //  rules: CleanDataManageRules,
+      isClear:false
     };
   },
   mounted() {
     this.handleBackView();
   },
   methods: {
+   
     //处理回显
     handleBackView() {
       //判断是否为新增

@@ -72,7 +72,7 @@
 import MainTabBar from "@components/content/maintabbar/MainTabBar";
 //表格组件
 import TableComp from "@components/common/tablecomp/TableComp";
-//
+//表单组件
 import FromData from "./childecomponent/FromData";
 
 import { isNum } from "@common/rules";
