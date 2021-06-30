@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {getLoginPage } from "./conf/commonFunc";
+import { getLoginPage } from "./conf/commonFunc";
 export default {
   data() {
     return {};

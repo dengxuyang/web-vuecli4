@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainTabBar
+    <main-tab-bar
       @handleTabClick="handleTabClick"
       @closeTab="closeTab"
       :loading="showTabLoading"
@@ -10,33 +10,26 @@
     >
       <!-- 固定的插槽名称需要和tabitem的label对应-->
       <div :slot="currentNav.name">
-        <el-row type="flex" class="row-bg top-box" justify="space-between" v-if="tableColumn.length">
+        <el-row
+          type="flex"
+          class="row-bg top-box"
+          justify="space-between"
+          v-if="tableColumn.length"
+        >
           <el-col :span="6">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleAdd"
-              
-              >新增</el-button
-            >
+            <el-button size="mini" type="primary" @click="handleAdd">新增</el-button>
           </el-col>
 
-          <el-form  @submit.native.prevent :inline="true">
+          <el-form @submit.native.prevent :inline="true">
             <el-form-item label="名称：">
               <el-input size="mini" @keyup.enter.native="onQuery" clearable v-model="searchKey"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button
-                size="mini"
-                type="primary"
-                @click="onQuery"
-                icon="el-icon-search"
-                >查询</el-button
-              >
+              <el-button size="mini" type="primary" @click="onQuery" icon="el-icon-search">查询</el-button>
             </el-form-item>
           </el-form>
         </el-row>
-        <TableComp
+        <table-comp
           :table-data="tableData"
           :table-column="tableColumn"
           :pagenum="pageNum"
@@ -49,11 +42,11 @@
           @handlePageChange="handlePageChange"
           @editRow="editRow"
           @delRow="delRow"
-        ></TableComp>
+        ></table-comp>
       </div>
       <!-- 编辑页插槽 -->
       <div :slot="tabEditLabel">
-        <FromData
+        <from-data
           :show-filed-data="showFieldData"
           :selectdata="selectData"
           :form="form"
@@ -61,9 +54,9 @@
           :rules="rules"
           @closetForm="closetForm"
           @submitForm="submitForm"
-        ></FromData>
+        ></from-data>
       </div>
-    </MainTabBar>
+    </main-tab-bar>
   </div>
 </template>
 
@@ -135,7 +128,7 @@ export default {
     this.$bus.$on("imgUploaded", this.imgUploaded);
     this.$bus.$on("imgRemoved", this.imgRemoved);
   },
-  destroyed() {},
+  destroyed() { },
   computed: {
     listenCurrentNav() {
       //监听点击菜单
@@ -184,7 +177,7 @@ export default {
             this.pagetotal = result.total;
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     //点击查询按钮
     onQuery() {
@@ -495,7 +488,7 @@ export default {
             this.closetForm();
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     //添加数据
     addData(fromData) {
@@ -511,7 +504,7 @@ export default {
             this.closetForm();
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     //删除数据
     deleteData(row) {
@@ -529,7 +522,7 @@ export default {
             this.queryDataOfResource();
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     //判断标签页是否已经打开
     isIncludes(value) {

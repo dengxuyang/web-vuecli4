@@ -5,40 +5,40 @@
       <div class="card_container">
         <div>
         
-          <HomeCard
+          <home-card
             :colorleft="'#64f6b7'"
             :colorright="'#177d1c'"
             :colorreflection="'#c7f3d7'"
             :icon="'icon_vip'"
             :info="{ number: numO.member, text: '会员数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#43b6ff'"
             :colorright="'#0168ff'"
             :colorreflection="'#c3e6ff'"
             :icon="'icon_message'"
             :info="{ number: numO.comment, text: '评论数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#74f4d7'"
             :colorright="'#03a185'"
             :colorreflection="'#c6f7ec'"
             :icon="'icon_consulting'"
             :info="{ number: numO.consultation, text: '咨询数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#4edbfc'"
             :colorright="'#0298cc'"
             :colorreflection="'#c8f1fb'"
             :icon="'icon_complaints'"
             :info="{ number: numO.complaint_case, text: '投诉数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
       </div>
     </div>
@@ -46,80 +46,80 @@
       <div class="ovearall_title">资源统计</div>
       <div class="card_container">
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#4edbfc'"
             :colorright="'#0298cc'"
             :colorreflection="'#c8f1fb'"
             :icon="'icon_attractions'"
             :info="{ number: numO.play, text: '景点数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#ae95ff'"
             :colorright="'#753ccb'"
             :colorreflection="'#e0d4f9'"
             :icon="'icon_food'"
             :info="{ number: numO.food, text: '美食数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#ead059'"
             :colorright="'#fd8127'"
             :colorreflection="'#fae6be'"
             :icon="'icon_stay'"
             :info="{ number: numO.stay, text: '住宿数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
           <div>
-            <HomeCard
+            <home-card
               :colorleft="'#43b6ff'"
               :colorright="'#0168ff'"
               :colorreflection="'#c3e6ff'"
               :icon="'icon_amusement'"
               :info="{ number: numO.amuse, text: '娱乐数量' }"
-            ></HomeCard>
+            ></home-card>
           </div>
         </div>
       </div>
       <div class="card_container">
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#ead059'"
             :colorright="'#fd8127'"
             :colorreflection="'#fae6be'"
             :icon="'icon_shop'"
             :info="{ number: numO.pro_owner, text: '商店数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#74f4d7'"
             :colorright="'#03a185'"
             :colorreflection="'#c6f7ec'"
             :icon="'icon_goods'"
             :info="{ number: numO.commodity, text: '商品数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#43b6ff'"
             :colorright="'#0168ff'"
             :colorreflection="'#c3e6ff'"
             :icon="'icon_line'"
             :info="{ number: numO.travel_line, text: '线路数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
         <div>
-          <HomeCard
+          <home-card
             :colorleft="'#4edbfc'"
             :colorright="'#0298cc'"
             :colorreflection="'#c8f1fb'"
             :icon="'icon_ticket'"
             :info="{ number: numO.ticket, text: '门票数量' }"
-          ></HomeCard>
+          ></home-card>
         </div>
       </div>
     </div>

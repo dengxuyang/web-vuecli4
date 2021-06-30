@@ -2,17 +2,10 @@
   <fragment>
     <!-- 图片上传 -->
     <div v-show="imgsrc" class="avatar-uploader el-upload imgLoadBox">
-      <img
-        :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc"
-        class="avatar"
-      />
+      <img :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc" class="avatar" />
       <div class="imgBoxmMask"></div>
       <i class="el-icon-delete" @click="handleRemove(filedname)"></i>
-      <i
-        class="el-icon-zoom-in"
-        @click="previewImg(filedname)"
-        :style="{ 'margin-left': '25%' }"
-      ></i>
+      <i class="el-icon-zoom-in" @click="previewImg(filedname)" :style="{ 'margin-left': '25%' }"></i>
     </div>
     <el-upload
       v-show="!imgsrc"
@@ -29,11 +22,7 @@
     </el-upload>
 
     <el-dialog :visible.sync="dialogVisible[filedname]">
-      <img
-        width="100%"
-        :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc"
-        alt=""
-      />
+      <img width="100%" :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc" alt />
     </el-dialog>
   </fragment>
 </template>

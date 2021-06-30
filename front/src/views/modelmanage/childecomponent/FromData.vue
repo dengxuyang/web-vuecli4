@@ -71,11 +71,11 @@
               rows="4"
               class="textareaNOPut"
             ></el-input>
-            <ImageUpload
+            <image-upload
               v-else-if="item.show_type == 6"
               :imgsrc="form[item.en_name]"
               :filedname="item.en_name"
-            ></ImageUpload>
+            ></image-upload>
             <!-- 时间选择器 -->
             <el-date-picker
               v-else-if="item.show_type == 7"
@@ -88,11 +88,11 @@
            <editor  v-model="form[item.en_name]" :isClear="isClear" v-else-if="item.show_type == 8"></editor>
          
             <!-- 文件上传 -->
-            <FileUpload
+            <file-upload
               v-else-if="item.show_type == 10"
               :filesrc="form[item.en_name]"
               :filedname="item.en_name"
-            ></FileUpload>
+            ></file-upload>
            
           </el-form-item>
         </el-col>

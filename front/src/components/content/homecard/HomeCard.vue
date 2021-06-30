@@ -7,16 +7,13 @@
     class="card"
   >
     <div class="left">
-      <div
-        :style="{ backgroundImage: 'url(' + img + ')' }"
-        class="card_icon"
-      ></div>
+      <div :style="{ backgroundImage: 'url(' + img + ')' }" class="card_icon"></div>
     </div>
     <div class="right">
       <div>
         <!-- {{ !info.number ? 0 : info.number }} -->
-        <count-to :startVal=0 :endVal='!info.number ? 0 : info.number' :duration='1000'></count-to>
-        </div>
+        <count-to :startVal="0" :endVal="!info.number ? 0 : info.number" :duration="1000"></count-to>
+      </div>
       <div>{{ info.text }}</div>
     </div>
     <div
@@ -47,7 +44,7 @@ export default {
       img: require("@assets/images/" + this.icon + ".png"),
     };
   },
- 
+
 };
 </script>
 

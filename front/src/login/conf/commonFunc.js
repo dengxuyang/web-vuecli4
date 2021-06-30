@@ -23,7 +23,6 @@ export function getUrlParam(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-
 export function logout() {
     var login_page = getUrlParam("login_page");
     var systemName;
@@ -57,40 +56,22 @@ export function logout() {
         "&l=" +
         logo;
 }
-export function getToken() {
-    return new Promise((resolve, reject) => {
-        let params = {
-            grant_type: "client_credentials",
-            appid: "appid",
-            secret: "appsecret",
-        };
-        getData(params)
-            .then((res) => {
-                store.commit("setToken", res.access_token);
-                resolve();
-            })
-            .catch((err) => {
-                reject();
-            });
-    });
-}
-
 export function getLoginPage() {
-  
+
     var code = getQueryVariable("code");
-   
+
     var login_page = getUrlParam("login_page");
     var url = document.URL;
-    if(IS_PROD){
+    if (IS_PROD) {
         if (!login_page || login_page == "") {
             login_page = "jqx";
             let urlarr = url.replace("http://", "").split("/");
             if (!urlarr[3].includes("login_page")) {
-                urlarr[3] = urlarr[3].replace("#",'?login_page=' + login_page+"#") 
+                urlarr[3] = urlarr[3].replace("#", '?login_page=' + login_page + "#")
             }
             url = "http://" + urlarr.join("/")
         }
-    }else{
+    } else {
         if (!login_page || login_page == "") {
             login_page = "jqx";
             let urlarr = url.replace("http://", "").split("/");
@@ -100,7 +81,7 @@ export function getLoginPage() {
             url = "http://" + urlarr.join("")
         }
     }
-   
+
     var username = getUrlParam("u");
     if (!username) {
         username = "";
@@ -118,7 +99,7 @@ export function getLoginPage() {
         title = "";
     }
 
-   
+
     if (!code || code == "") {
         redirect_uri = encodeURIComponent(url);
         window.location =
@@ -134,7 +115,7 @@ export function getLoginPage() {
         //getuser()
     }
 }
-
+//业务代码 获取用户信息
 function getuser() {
     /********************业务逻辑 根据业务写 */
     let params = {
@@ -190,4 +171,21 @@ function getuser() {
                 });
         })
         .catch((err) => {});
+}
+export function getToken() {
+    return new Promise((resolve, reject) => {
+        let params = {
+            grant_type: "client_credentials",
+            appid: "appid",
+            secret: "appsecret",
+        };
+        getData(params)
+            .then((res) => {
+                store.commit("setToken", res.access_token);
+                resolve();
+            })
+            .catch((err) => {
+                reject();
+            });
+    });
 }

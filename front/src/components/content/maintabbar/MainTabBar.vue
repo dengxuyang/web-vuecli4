@@ -15,7 +15,7 @@
         :name="item.name"
         :label="item.label"
       >
-        <slot :name="item.label"> </slot>
+        <slot :name="item.label"></slot>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ["tabitem","loading"],
+  props: ["tabitem", "loading"],
   data() {
     return {
       activeName: this.tabitem[0].name,
@@ -43,7 +43,7 @@ export default {
         }
       });
       this.activeName = this.tabitem[0].name;
-      
+
     },
   },
 };
