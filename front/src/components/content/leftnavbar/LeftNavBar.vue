@@ -14,6 +14,7 @@
         @close="handleClose"
         :collapse="isCollapse"
         unique-opened
+        ref="refmenu"
       >
         <fragment v-for="item in leftNavData" :key="item.index">
           <el-menu-item
@@ -23,16 +24,10 @@
             class="one_menu_item"
           >
             <i :class="item.icon"></i>
-            <span slot="title" style="">{{ item.name }}</span>
+            <span slot="title" style>{{ item.name }}</span>
           </el-menu-item>
-          <!-- 多级 -->
-          <el-submenu
-            :ref="'submenu' + item.index"
-            v-else
-            :key="item.index"
-            :index="item.index"
-           
-          >
+          <!-- 多级菜单 -->
+          <el-submenu :ref="'submenu' + item.index" v-else :key="item.index" :index="item.index">
             <template slot="title">
               <i style="color: #ffffff" :class="item.icon"></i>
               <span slot="title">{{ item.name }}</span>
@@ -75,18 +70,25 @@ export default {
         setTimeout(() => {
           submenuDom.$children[0].$el.click();
         }, 350);
-        
+
       }
     },
-    handleClose(key, keyPath) {},
+    handleClose(key, keyPath) { },
+
     //点击菜单
     menuClick(item) {
       let index = item.index,
-        name = item.name,
-        isRouter = item.isRouter;
+          name = item.name,
+          isRouter = item.isRouter;
       this.$store.commit("setcurrentNav", { index, name });
       if (isRouter) {
         this.$router.push({ name: index });
+       console.log(this.$refs['refmenu']);
+       let openedMenus= this.$refs['refmenu'].openedMenus
+       openedMenus.forEach(i => {
+        this.$refs['refmenu'].close(i)
+       });
+      
       } else if (this.$route != "modelmanage") {
         this.$router.push({ name: "modelmanage" });
       }

@@ -119,7 +119,7 @@ export const leftNavData = [{
         index: 'foo',
         icon: 'el-icon-s-data',
         name: '统计分析',
-
+        isRouter: true
     }, {
         index: 'systemcConfig',
         icon: 'el-icon-setting',
