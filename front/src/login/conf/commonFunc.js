@@ -1,4 +1,4 @@
-//import { oauthGetCurrentUser, getDataApiPower, getData } from "@network/token";
+import { oauthGetCurrentUser, getDataApiPower, getData } from "@network/token";
 import store from '../../store'
 import router from '../../router'
 var code = getUrlParam("code");

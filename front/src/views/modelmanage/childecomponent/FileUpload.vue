@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div>
     <!-- 文件上传 -->
     <el-upload
       ref="upload"
@@ -24,7 +24,6 @@
       :href="(filesrc ? '/back/gthmmc' : '') + filesrc"
       >{{ filesrc | filepathfilter }}</a
     >
-
     <el-tooltip
       v-show="filesrc"
       style="margin-left: 20px"
@@ -40,7 +39,7 @@
         @click="handleRemove(filedname)"
       ></el-link>
     </el-tooltip>
-  </fragment>
+  </div>
 </template>
 
 <script>
@@ -48,19 +47,26 @@ export default {
   props: ["filesrc", "filedname"],
   data() {
     return {
-      loadprogress: [],
       dialogVisible: {},
-      form: {},
       fileList: [],
     };
   },
+
   methods: {
     handleAvatarSuccess(res, name) {
-      this.$bus.$emit("imgUploaded", res, name);
+      if(res.result=="1"){
+        this.$bus.$emit("imgUploaded", res, name);
+      }else{
+        this.fileList = [];
+        this.$message({
+              message: res.message,
+              type: "info",
+            });
+      }
     },
 
     handleRemove(itemname) {
-      this.fileList = [];
+    
       this.$bus.$emit("imgRemoved", itemname);
     },
     previewImg(itemname) {

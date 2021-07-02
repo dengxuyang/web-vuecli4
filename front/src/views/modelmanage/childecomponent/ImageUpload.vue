@@ -1,5 +1,5 @@
 <template>
-  <fragment>
+  <div>
     <!-- 图片上传 -->
     <div v-show="imgsrc" class="avatar-uploader el-upload imgLoadBox">
       <img :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc" class="avatar" />
@@ -24,7 +24,7 @@
     <el-dialog :visible.sync="dialogVisible[filedname]">
       <img width="100%" :src="(imgsrc ? '/back/gthmmc' : '') + imgsrc" alt />
     </el-dialog>
-  </fragment>
+  </div>
 </template>
 
 <script>

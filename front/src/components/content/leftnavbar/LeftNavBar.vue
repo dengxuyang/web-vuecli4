@@ -83,7 +83,7 @@ export default {
       this.$store.commit("setcurrentNav", { index, name });
       if (isRouter) {
         this.$router.push({ name: index });
-       console.log(this.$refs['refmenu']);
+        //收起展开的submenu
        let openedMenus= this.$refs['refmenu'].openedMenus
        openedMenus.forEach(i => {
         this.$refs['refmenu'].close(i)

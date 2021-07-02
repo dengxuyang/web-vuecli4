@@ -48,6 +48,7 @@ export default {
 
   methods: {
     initE() {
+      
       this.editor = new E('#e')
       this.editor.config.onchangeTimeout = 1000 // 单位 ms
       this.editor.config.uploadFileName = 'Filedata'

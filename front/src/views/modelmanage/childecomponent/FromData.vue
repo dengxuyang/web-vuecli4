@@ -24,7 +24,7 @@
               v-model="form[item.en_name]"
             ></el-input>
             <!-- 单选按钮 -->
-            <fragment v-if="item.show_type == 2">
+            <fragment v-else-if="item.show_type == 2">
               <el-radio
                 v-for="radio in selectdata[item.en_name]"
                 v-model="form[item.en_name]"
@@ -35,7 +35,7 @@
             </fragment>
             <!-- 多选按钮 -->
             <el-checkbox-group
-              v-if="item.show_type == 3"
+              v-else-if="item.show_type == 3"
               v-model="checkList[item.en_name]"
               @change="handleChange(item.en_name)"
             >
@@ -48,7 +48,7 @@
             </el-checkbox-group>
             <!-- 选择框 -->
             <el-select
-              v-if="item.show_type == 4"
+              v-else-if="item.show_type == 4"
               v-model="form[item.en_name]"
               placeholder="请选择"
               style="width: 100%"
@@ -71,6 +71,7 @@
               rows="4"
               class="textareaNOPut"
             ></el-input>
+            <!-- 图片上传 -->
             <image-upload
               v-else-if="item.show_type == 6"
               :imgsrc="form[item.en_name]"
@@ -85,15 +86,13 @@
               type="date"
             ></el-date-picker>
              <!-- 富文本 -->
-           <editor  v-model="form[item.en_name]" :isClear="isClear" v-else-if="item.show_type == 8"></editor>
-         
+           <editor v-else-if="item.show_type == 8"  v-model="form[item.en_name]" :isClear="isClear" ></editor>
             <!-- 文件上传 -->
             <file-upload
               v-else-if="item.show_type == 10"
               :filesrc="form[item.en_name]"
               :filedname="item.en_name"
             ></file-upload>
-           
           </el-form-item>
         </el-col>
       </el-row>
@@ -148,6 +147,7 @@ export default {
     };
   },
   mounted() {
+  
     this.handleBackView();
   },
   methods: {
@@ -182,20 +182,6 @@ export default {
       this.$refs["tabbar"].removeTab("editpage");
     },
     closetForm() {},
-    uploadAvatarProcess(event, index, name) {
-      // this.loadprogress[index]["flag" + name] = true; // 显示进度条
-      // setTimeout(() => {
-      //   this.loadprogress[index]["percent" + name] = parseInt(event.percent); // 动态获取文件上传进度
-      //   if (this.loadprogress[index]["percent" + name] >= 100) {
-      //     this.loadprogress[index]["percent" + name] = 100;
-      //     setTimeout(() => {
-      //      // this.$set(this.loadprogress[index], "flag" + name, false);
-      //       this.$forceUpdate();
-      //     }, 1000); // 一秒后关闭进度条
-      //   }
-      // }, 1000);
-    },
-
     clickSave() {
       this.$refs["form"].validate((valid) => {
         if (valid) {
