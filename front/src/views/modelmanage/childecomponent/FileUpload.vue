@@ -54,6 +54,7 @@ export default {
 
   methods: {
     handleAvatarSuccess(res, name) {
+     
       if(res.result=="1"){
         this.$bus.$emit("imgUploaded", res, name);
       }else{
@@ -66,14 +67,14 @@ export default {
     },
 
     handleRemove(itemname) {
-    
+   
       this.$bus.$emit("imgRemoved", itemname);
     },
     previewImg(itemname) {
       this.$set(this.dialogVisible, itemname, true);
     },
     fileProgress(e){
-     console.log(parseInt(e.percent));
+     console.log(e);
     }
   },
   filters: {
